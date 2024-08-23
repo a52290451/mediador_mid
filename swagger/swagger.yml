@@ -1,0 +1,82 @@
+swagger: '2.0'  # Versión de la especificación Swagger que se está utilizando.
+
+info:  # Información sobre la API.
+  description: Api mid  # Descripción de la API.
+  title: mediador_mid  # Título de la API.
+  version: '1.0'  # Versión de la API.
+
+basePath: /v1  # Ruta base para todas las URL de la API.
+consumes:
+- application/json  # Tipo de contenido que la API puede consumir (enviar en el cuerpo de las solicitudes).
+produces:
+- application/json  # Tipo de contenido que la API puede producir (enviar en las respuestas).
+
+tags:
+- name: example
+  description: Ejemplo de operaciones
+
+definitions:
+  upload_resquest:
+    type: object
+    properties:
+      IdTipoDocumento:
+        type: integer
+      descripcion:
+        type: string
+      file:
+        type: string
+      metadatos:
+        type: object
+        properties:
+          dato_a:
+            type: string
+          dato_b:
+            type: string
+      nombre:
+        type: string
+
+paths:  # Definiciones de rutas y sus correspondientes métodos HTTP.
+  /example_endpoint:
+    get:  # Método HTTP GET
+      tags:
+      - example
+      summary: Ejemplo de endpoint GET  # Resumen del endpoint.
+      description: |
+        Este es un endpoint de ejemplo para mostrar cómo se estructura una operación GET.
+      operationId: get_example  # Identificador único de la operación.
+      parameters:  # Parámetros que acepta este endpoint.
+      - name: param1
+        in: query
+        description: Ejemplo de parámetro de consulta
+        required: false
+        type: string
+      responses:  # Posibles respuestas del endpoint.
+        '200':
+          description: Success
+        '400':
+          description: Bad request
+        '404':
+          description: Not found
+        '500':
+          description: Error del servidor
+
+    post:  # Método HTTP POST
+      tags:
+      - example
+      summary: Ejemplo de endpoint POST  # Resumen del endpoint.
+      description: |
+        Este es un endpoint de ejemplo para mostrar cómo se estructura una operación POST.
+      operationId: post_example  # Identificador único de la operación.
+      parameters:  # Parámetros que acepta este endpoint.
+      - name: payload
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/upload_resquest'
+      responses:  # Posibles respuestas del endpoint.
+        '200':
+          description: Success
+        '400':
+          description: Bad request
+        '500':
+          description: Error del servidor
